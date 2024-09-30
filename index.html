@@ -86,6 +86,31 @@
       </div>
     </section>
 
+    <!-- Typing effect script -->
+    <script>
+      // The text that will be typed out
+      const textToType = "Data Enthusiast";
+    
+      // The element where the text will be typed
+      const typingTextElement = document.getElementById("typing-text");
+    
+      let index = 0;
+    
+      function type() {
+        if (index < textToType.length) {
+          // Add the next character to the typing text element
+          typingTextElement.innerHTML += textToType.charAt(index);
+          index++;
+          setTimeout(type, 100); // Typing speed (in milliseconds)
+        }
+      }
+    
+      // Start typing after the page loads
+      window.onload = function() {
+        setTimeout(type, 1000); // Delay before typing starts
+      };
+    </script>
+
     <!-- /Hero Section -->
 
   </main>
