@@ -88,28 +88,43 @@
 
     <!-- Typing effect script -->
     <script>
-      // The text that will be typed out
       const textToType = "Data Enthusiast";
-    
-      // The element where the text will be typed
       const typingTextElement = document.getElementById("typing-text");
-    
+      
       let index = 0;
-    
+      let isErasing = false;
+      const typingSpeed = 100;  // Speed of typing in milliseconds
+      const erasingSpeed = 50;  // Speed of erasing in milliseconds
+      const newTextDelay = 1000; // Delay between typing the full text and starting to erase
+      
       function type() {
-        if (index < textToType.length) {
-          // Add the next character to the typing text element
+        if (index < textToType.length && !isErasing) {
+          // Add the next character to the element
           typingTextElement.innerHTML += textToType.charAt(index);
           index++;
-          setTimeout(type, 100); // Typing speed (in milliseconds)
+          setTimeout(type, typingSpeed);
+        } else if (index === textToType.length) {
+          // Wait before starting to erase
+          isErasing = true;
+          setTimeout(type, newTextDelay);
+        } else if (isErasing && index > 0) {
+          // Erase one character at a time
+          typingTextElement.innerHTML = textToType.substring(0, index - 1);
+          index--;
+          setTimeout(type, erasingSpeed);
+        } else if (index === 0) {
+          // Restart typing after erasing
+          isErasing = false;
+          setTimeout(type, typingSpeed);
         }
       }
     
       // Start typing after the page loads
       window.onload = function() {
-        setTimeout(type, 1000); // Delay before typing starts
+        setTimeout(type, 1000); // Delay before typing starts initially
       };
     </script>
+
 
     <!-- Typing cursor effect CSS -->
     <style>
