@@ -1415,6 +1415,23 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
+/* Typing cursor effect */
+.cursor {
+  font-weight: bold;
+  font-size: 24px;
+  color: pink;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
